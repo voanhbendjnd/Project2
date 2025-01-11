@@ -72,7 +72,7 @@ public class DistrictEntity {
     @Column(name = "code")
     private String code;
 
-    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "district",fetch = FetchType.LAZY)
     private List<BuildingEntity> buildings = new ArrayList<>();
 
     // Getters and Setters

@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.javaweb.builder.BuildingSearchBuilder;
 import com.javaweb.repository.BuildingRepository;
@@ -45,14 +46,11 @@ public class BuildingRepositoryImplement implements BuildingRepository{
 
 	@Override
 	public List<BuildingEntity> timkiem(BuildingSearchBuilder buildingSerbuilder) {
-	    // JPQL truy vấn đối tượng từ entity
-	    String sql = "FROM BuildingEntity";
-
-	    // Sử dụng Query từ javax.persistence
-	    TypedQuery<BuildingEntity> query = entityManager.createQuery(sql, BuildingEntity.class);
-
-	    // Trả về danh sách kết quả
-	    return query.getResultList();
+	    String sql = "select * FROM Building b where b.name like '%building%' ";
+	    Query query =  (Query) entityManager.createNativeQuery(sql, BuildingEntity.class);
+//  TypedQuery<BuildingEntity> query = entityManager.createQuery(sql, BuildingEntity.class);
+	    List<BuildingEntity> res = ((javax.persistence.Query) query).getResultList();
+	    return res;
 	}
 
 

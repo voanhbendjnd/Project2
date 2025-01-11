@@ -243,11 +243,11 @@ public class BuildingEntity {
 		this.districtid = districtid;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER) // Quan hệ Many-to-One với DistrictEntity
-    @JoinColumn(name = "districtid", referencedColumnName = "id")
+	@ManyToOne// Quan hệ Many-to-One với DistrictEntity
+    @JoinColumn(name = "districtid")
     private DistrictEntity district;
 
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
     private List<RentAreaEntity> items = new ArrayList<>();
 
     // Getters và Setters
