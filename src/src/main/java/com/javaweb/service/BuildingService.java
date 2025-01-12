@@ -18,4 +18,5 @@ public interface BuildingService {
 	List<BuildingDTO> timkiem(Map<String, Object> params, List<String>typecode);
 	List<BuildingDTO> Timkiem2(Map<String, Object> params, List<String> typecde);
 	BuildingDTO getBuildingById(Long id);
+	BuildingDTO InsertJPA(BuildingDTO buildingDTO);
 }

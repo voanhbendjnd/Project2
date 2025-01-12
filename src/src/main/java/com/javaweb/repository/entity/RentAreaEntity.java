@@ -14,8 +14,8 @@ public class RentAreaEntity {
     private String value;
 
     @ManyToOne
-    @JoinColumn(name = "buildingid") // Tên cột khóa ngoại
-    private BuildingEntity buildings;
+    @JoinColumn(name = "buildingid", referencedColumnName = "id") // Tên cột khóa ngoại
+    private BuildingEntity building;
 
     // Getters và Setters
     public Long getId() {
@@ -35,11 +35,11 @@ public class RentAreaEntity {
     }
 
 	public BuildingEntity getBuildings() {
-		return buildings;
+		return building;
 	}
 
 	public void setBuildings(BuildingEntity buildings) {
-		this.buildings = buildings;
+		this.building = buildings;
 	}
 
    

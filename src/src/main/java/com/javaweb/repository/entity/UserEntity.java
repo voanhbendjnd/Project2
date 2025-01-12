@@ -48,8 +48,6 @@ public class UserEntity {
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
-	//	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//	private List<UserRoleEntity> userRoleEntity = new ArrayList<>();
 	public Long getId() {
 		return id;
 	}
