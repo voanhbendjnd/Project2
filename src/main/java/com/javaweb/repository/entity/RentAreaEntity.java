@@ -34,11 +34,13 @@ public class RentAreaEntity {
         this.value = value;
     }
 
-    public BuildingEntity getBuilding() {
-        return building;
-    }
+	public BuildingEntity getBuildings() {
+		return building;
+	}
 
-    public void setBuilding(BuildingEntity building) {
-        this.building = building;
-    }
+	public void setBuildings(BuildingEntity buildings) {
+		this.building = buildings;
+	}
+
+   
 }

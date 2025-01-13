@@ -472,4 +472,11 @@ public class JDBCBuildingRepositoryImplement implements BuildingRepository{
 		}
 	}
 
+	@Override
+	public BuildingEntity InsertJPA(BuildingEntity buildingEntity) {
+		// TODO Auto-generated method stub
+		entityManager.persist(buildingEntity);
+		return buildingEntity;
+	}
+
 }

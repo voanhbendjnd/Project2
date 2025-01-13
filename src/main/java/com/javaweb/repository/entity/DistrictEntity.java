@@ -18,46 +18,7 @@ import javax.persistence.Table;
 
 import com.mysql.cj.Query;
 import java.util.AbstractSequentialList;
-//@Entity
-//@Table(name = "district")
-//public class DistrictEntity {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	public Long getId() {
-//		return id;
-//	}
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//	public String getCode() {
-//		return code;
-//	}
-//	public void setCode(String code) {
-//		this.code = code;
-//	}
-//	@Column(name = "name")
-//	private String name;
-//	@OneToMany(mappedBy = "district", fetch = FetchType.LAZY)
-//	private List<BuildingEntity> buildings = new ArrayList<>();
-//	
-//	
-//
-//	public List<BuildingEntity> getBuildings() {
-//		return buildings;
-//	}
-//	public void setBuildings(List<BuildingEntity> buildings) {
-//		this.buildings = buildings;
-//	}
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//	private Long id;
-//	@Column(name = "code")
-//	private String code;
-//}
+
 @Entity
 @Table(name = "district")
 public class DistrictEntity {
@@ -71,11 +32,11 @@ public class DistrictEntity {
 
     @Column(name = "code")
     private String code;
-
     @OneToMany(mappedBy = "district",fetch = FetchType.LAZY)
+//    @OneToMany(mappedBy = "district",fetch = FetchType.LAZY)
     private List<BuildingEntity> buildings = new ArrayList<>();
 
-    // Getters and Setters
+    
     public Long getId() {
         return id;
     }

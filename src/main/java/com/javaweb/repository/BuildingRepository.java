@@ -30,4 +30,5 @@ public interface BuildingRepository{
 	List<BuildingEntity> Timkiem2(Map<String, Object> params, List<String> typecode);
 	@Query("SELECT b FROM BuildingEntity b JOIN FETCH b.district WHERE b.id = :id")
     Optional<BuildingEntity> findByIdWithDistrict(@Param("id") Long id);
+	BuildingEntity InsertJPA(BuildingEntity buildingEntity);
 }

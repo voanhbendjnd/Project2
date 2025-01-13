@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.javaweb.ConvertTo.ConvertToEntity;
 import com.javaweb.ConvertTo.BuildingSearchBuilderConverter;
 import com.javaweb.ConvertTo.ConvertToDataTransferObject;
 import com.javaweb.CustomerException.OutputException;
@@ -23,10 +23,12 @@ import com.javaweb.repository.implement.BuildingRepositoryImplement;
 import com.javaweb.repository.implement.JDBCBuildingRepositoryImplement;
 import com.javaweb.repository.implement.RentAreaRepositoryImplement;
 import com.javaweb.service.BuildingService;
+
 @Service
 
 public class BuildingServiceImplement implements BuildingService{
 //	@Autowired
+	
 	private BuildingSearchBuilderConverter Converter = new BuildingSearchBuilderConverter();
 //	private ConvertToDataTransferObject ConvertToJson = new ConvertToDataTransferObject();
 	private RentAreaRepositoryImplement rent = new RentAreaRepositoryImplement(); 
@@ -42,6 +44,8 @@ public class BuildingServiceImplement implements BuildingService{
 		}
 		return res;
 	}
+	
+	
 	@Override
 	public List<BuildingDTO> timkiem(Map<String, Object> params, List<String>typecode) {
 		// TODO Auto-generated method stub
@@ -52,6 +56,15 @@ public class BuildingServiceImplement implements BuildingService{
 			res.add(ConvertToDataTransferObject.ConvertToDTO(x));
 		}
 		return res;
+	}
+//	private com.javaweb.ConvertTo.ConvertToEntity EntityConvertTo = new com.javaweb.ConvertTo.ConvertToEntity();
+	@Override
+	public BuildingDTO InsertJPA(BuildingDTO buildingDTO) {
+		// TODO Auto-generated method stub
+		BuildingEntity buildingEntity = ConvertToEntity.ConverToEntity(buildingDTO);
+		BuildingEntity saveEntity = buildingRepository.InsertJPA(buildingEntity);
+		
+		return ConvertToDataTransferObject.ConvertToDTO(saveEntity);
 	}
 	@Override
 	public List<BuildingDTO> Getdate(String name, Integer floorarea, Integer numberofbasement, String direction, String managername, String managerphonenumber) {
@@ -120,13 +133,7 @@ public class BuildingServiceImplement implements BuildingService{
 				.orElseThrow(() -> new RuntimeException("Building not found"));
 		return ConvertToDataTransferObject.ConvertToDTO(building);
 	}
-	
 
-	
-	
 
-	
-	
 
 }
-// 1 26 00

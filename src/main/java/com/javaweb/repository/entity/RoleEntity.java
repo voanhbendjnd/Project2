@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "role")
@@ -44,12 +45,20 @@ public class RoleEntity {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-	private List<UserRoleEntity> userRoleEntity = new ArrayList<>();
-	public List<UserRoleEntity> getUserRoleEntity() {
-		return userRoleEntity;
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	private List<UserEntity> users = new ArrayList<>();
+//	private List<UserRoleEntity> userRoleEntity = new ArrayList<>();
+//	public List<UserRoleEntity> getUserRoleEntity() {
+//		return userRoleEntity;
+//	}
+//	public void setUserRoleEntity(List<UserRoleEntity> userRoleEntity) {
+//		this.userRoleEntity = userRoleEntity;
+//	}
+
+	public List<UserEntity> getUsers() {
+		return users;
 	}
-	public void setUserRoleEntity(List<UserRoleEntity> userRoleEntity) {
-		this.userRoleEntity = userRoleEntity;
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
 	}
 }
