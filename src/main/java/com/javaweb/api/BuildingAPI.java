@@ -36,13 +36,12 @@ import com.javaweb.serviceimplement.BuildingServiceImplement;
 public class BuildingAPI {
 	@PersistenceContext
 	private EntityManager entityManager;
-
-	private BuildingServiceImplement buildingservice = new BuildingServiceImplement();
-	
+	@Autowired
+	private BuildingService buildingservice;
 	
 	@GetMapping(value = "/api/building/")
 	public List<BuildingDTO> GetBuilding(@RequestParam Map<String, Object> params, @RequestParam(value = "typecode", required = false) List <String> typecode){
-		List<BuildingDTO> res = buildingservice.timkiem(params, typecode);
+		List<BuildingDTO> res = buildingservice.findAll(params, typecode);
 		return res;
 		
 	}

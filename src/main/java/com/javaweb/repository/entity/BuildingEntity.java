@@ -3,7 +3,7 @@ package com.javaweb.repository.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,22 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
-
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "building")
@@ -41,9 +25,6 @@ public class BuildingEntity {
     
     @Column(name = "name")
     private String name;
-
-    @Column(name = "address")
-    private String address;
 
     @Column(name = "managername")
     private String managername;
@@ -60,11 +41,11 @@ public class BuildingEntity {
     @Column(name = "floorarea")
     private Long floorarea;
 
-    @Column(name = "rentarea")
-    private Long rentarea;
+//    @Column(name = "rentarea")
+//    private Long rentarea;
 
-    @Column(name = "emptyarea")
-    private Long emptyarea;
+//    @Column(name = "emptyarea")
+//    private Long emptyarea;
 
     @Column(name = "rentprice")
     private Long rentprice;
@@ -126,13 +107,6 @@ public class BuildingEntity {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getManagername() {
         return managername;
@@ -174,21 +148,21 @@ public class BuildingEntity {
         this.floorarea = floorarea;
     }
 
-    public Long getRentarea() {
-        return rentarea;
-    }
+//    public Long getRentarea() {
+//        return rentarea;
+//    }
+//
+//    public void setRentarea(Long rentarea) {
+//        this.rentarea = rentarea;
+//    }
 
-    public void setRentarea(Long rentarea) {
-        this.rentarea = rentarea;
-    }
-
-    public Long getEmptyarea() {
-        return emptyarea;
-    }
-
-    public void setEmptyarea(Long emptyarea) {
-        this.emptyarea = emptyarea;
-    }
+//    public Long getEmptyarea() {
+//        return emptyarea;
+//    }
+//
+//    public void setEmptyarea(Long emptyarea) {
+//        this.emptyarea = emptyarea;
+//    }
 
     public Long getRentprice() {
         return rentprice;
