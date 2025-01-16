@@ -11,5 +11,8 @@ import com.javaweb.beans.BuildingDTO;
 import com.javaweb.repository.entity.BuildingEntity;
 @Service
 public interface BuildingService {
+	List<BuildingDTO> findByNameContaining(String name);
 	List<BuildingDTO> findAll(Map<String, Object> params, List<String>typecode);
+	void deleteByIdIn(Long [] ids);
+	void deleteByIdIn(List<Long> ids);
 }

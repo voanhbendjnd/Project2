@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.javaweb.beans.BuildingDTO;
 import com.javaweb.repository.DistrictRepository;
-import com.javaweb.repository.custom.impl.DistrictRepositoryImplement;
-import com.javaweb.repository.custom.impl.JDBCBuildingRepositoryImplement;
-import com.javaweb.repository.custom.impl.RentAreaRepositoryImplement;
+import com.javaweb.repository.custom.implement.DistrictRepositoryImplement;
+import com.javaweb.repository.custom.implement.RentAreaRepositoryImplement;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.repository.entity.DistrictEntity;
 import com.javaweb.repository.entity.RentAreaEntity;

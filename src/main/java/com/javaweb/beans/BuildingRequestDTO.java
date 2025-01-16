@@ -2,9 +2,15 @@ package com.javaweb.beans;
 
 public class BuildingRequestDTO {
  private String name, ward, street;
- private Long districtid, rentprice;
+ private Long districtid, rentprice, id;
 public String getName() {
 	return name;
+}
+public Long getId() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
 }
 public void setName(String name) {
 	this.name = name;
