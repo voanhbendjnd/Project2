@@ -15,4 +15,6 @@ public interface BuildingService {
 	List<BuildingDTO> findAll(Map<String, Object> params, List<String>typecode);
 	void deleteByIdIn(Long [] ids);
 	void deleteByIdIn(List<Long> ids);
+	void saveAll(List<BuildingDTO> dto);
+	void updateBuilding(List<BuildingDTO>dtoList);
 }

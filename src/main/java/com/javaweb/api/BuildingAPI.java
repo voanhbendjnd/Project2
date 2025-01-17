@@ -62,12 +62,20 @@ public class BuildingAPI {
 //		// xoa het
 //		
 //	}
-	
+	@PutMapping(value = "api/building/")
+	public void updateBuilding(@RequestBody List<BuildingDTO> dtoList) {
+		buildingservice.updateBuilding(dtoList);
+	}
 	@DeleteMapping(value = "/api/building/{ids}")
 	public void DeleteBuildingById(@PathVariable Long[] ids) {
 		// clear ở tầng service
 		buildingservice.deleteByIdIn(ids);
 		System.out.println("CLear successful");
+	}
+	
+	@PostMapping(value = "/api/building/")
+	public void addBuilding(@RequestBody List<BuildingDTO> dto) {
+		buildingservice.saveAll(dto);
 	}
 //	@GetMapping(value = "/api/building/{name}/{street}")
 //	public BuildingDTO getBuilding(@PathVariable String name, @PathVariable String street) {
@@ -75,35 +83,35 @@ public class BuildingAPI {
 //		List<BuildingEntity> building = buildingRepository.findByNameContainingAndStreetContaining(name, street);
 //		return res;
 //	}
-	@PostMapping(value = "/api/building/")
-	public void insertBuilding(@RequestBody BuildingRequestDTO requestDTO) {
-		BuildingEntity entity = new BuildingEntity();
-		entity.setId(1L);
-		entity.setName(requestDTO.getName());
-		entity.setStreet(requestDTO.getStreet());
-		entity.setWard(requestDTO.getWard());
-		DistrictEntity districtentity = new DistrictEntity();
-		districtentity.setId(requestDTO.getDistrictid());
-		entity.setDistrict(districtentity);
-		buildingRepository.save(entity);
-		// bỏ vô model convert
-		// DTO sang entity
-		System.out.println("DA SAVE!");
-	}
-	@PutMapping(value = "/api/building/")
-	public void updateBuilding(@RequestBody BuildingRequestDTO dto) {
-		BuildingEntity entity = buildingRepository.findById(dto.getId()).get();
-		entity.setName(dto.getName());
-		entity.setWard(dto.getWard());
-		entity.setStreet(dto.getStreet());
-		DistrictEntity districtEntity = new DistrictEntity();
-		districtEntity.setId(dto.getDistrictid());
-		entity.setDistrict(districtEntity);
-		buildingRepository.save(entity);
-		System.out.println("UPDATE!");
-		
-		
-	}
+//	@PostMapping(value = "/api/building/")
+//	public void insertBuilding(@RequestBody BuildingRequestDTO requestDTO) {
+//		BuildingEntity entity = new BuildingEntity();
+//		entity.setId(1L);
+//		entity.setName(requestDTO.getName());
+//		entity.setStreet(requestDTO.getStreet());
+//		entity.setWard(requestDTO.getWard());
+//		DistrictEntity districtentity = new DistrictEntity();
+//		districtentity.setId(requestDTO.getDistrictid());
+//		entity.setDistrict(districtentity);
+//		buildingRepository.save(entity);
+//		// bỏ vô model convert
+//		// DTO sang entity
+//		System.out.println("DA SAVE!");
+//	}
+//	@PutMapping(value = "/api/building/")
+//	public void updateBuilding(@RequestBody BuildingRequestDTO dto) {
+//		BuildingEntity entity = buildingRepository.findById(dto.getId()).get();
+//		entity.setName(dto.getName());
+//		entity.setWard(dto.getWard());
+//		entity.setStreet(dto.getStreet());
+//		DistrictEntity districtEntity = new DistrictEntity();
+//		districtEntity.setId(dto.getDistrictid());
+//		entity.setDistrict(districtEntity);
+//		buildingRepository.save(entity);
+//		System.out.println("UPDATE!");
+//		
+//		
+//	}
 	// insert function
 //	@PostMapping(value = "/api/building/")
 //	public void postBuilding(@RequestBody BuildingRequestDTO buildingRequest) {

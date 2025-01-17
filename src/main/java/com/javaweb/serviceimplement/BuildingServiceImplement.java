@@ -29,12 +29,40 @@ import com.javaweb.service.BuildingService;
 public class BuildingServiceImplement implements BuildingService {
 	@Autowired
 	private BuildingRepository buildingRepository;
+
+	
 	private BuildingSearchBuilderConverter Converter = new BuildingSearchBuilderConverter();
 //	private ConvertToDataTransferObject ConvertToJson = new ConvertToDataTransferObject();
 	private RentAreaRepositoryImplement rent = new RentAreaRepositoryImplement();
 //	private DistrictRepositoryImplement districtrepository = new DistrictRepositoryImplement();
-
-    
+	@Override
+	public void saveAll(List<BuildingDTO> dto) {
+		// TODO Auto-generated method stub
+//		List<BuildingEntity> buildingEntities = new ArrayList<>();
+//		for(BuildingDTO x : dto) {
+//			buildingEntities.add(ConvertToEntity.ConvertToEntity(x));
+//		}
+		// stream
+		List<BuildingEntity> buildingEntities = dto.stream()
+				.map(ConvertToEntity::ConvertToEntity)
+				.collect(Collectors.toList());
+		buildingRepository.saveAll(buildingEntities);
+		
+		
+	}
+	@Override
+	public void updateBuilding(List<BuildingDTO> dtoList) {
+		// TODO Auto-generated method stub
+		List<Long> ids = dtoList.stream()
+				.map(BuildingDTO::getId)
+				.collect(Collectors.toList());
+		List<BuildingEntity> entities = buildingRepository.findAllById(ids);
+		entities = dtoList.stream()
+				.map(ConvertToEntity::ConvertToEntity)
+				.collect(Collectors.toList());
+		buildingRepository.saveAll(entities);
+		
+	}
 	@Override
 	public void deleteByIdIn(Long [] ids) {
 		buildingRepository.deleteByIdIn(ids);
@@ -51,31 +79,12 @@ public class BuildingServiceImplement implements BuildingService {
 //		List<BuildingEntity> buildingEntity = buildingRepository.findByNameContaining(String name);
 //		List<BuildingEntity> buildingEntity = buildingRepository.findByNameContaining("Building");
 //		List<BuildingEntity> buildingEntity = buildingRepository.findAll(builder);
-		List<BuildingEntity> buildingEntity = buildingRepository.findAll(builder);
+		List<BuildingEntity> buildingEntity = buildingRepository.findAll();
 		List<BuildingDTO> res = new ArrayList<>();
 		for (BuildingEntity x : buildingEntity) {
 			res.add(ConvertToDataTransferObject.ConvertToDTO(x));
 		}
 		return res;
-	}
-
-	private void valiDate(ArrayList<BuildingDTO> bui) throws OutputException {
-		for (BuildingDTO x : bui) {
-			if (x.getName().equals("") || x.getName() == null) {
-				throw new OutputException("Name is not empty!");
-			}
-		}
-
-	}
-
-	private BuildingEntity ConvertToEntity(BuildingDTO dto) {
-		BuildingEntity be = new BuildingEntity();
-		be.setName(dto.getName());
-//		be.setNumberofbasement(dto.getNumberofbasement());
-//		
-//		
-//		be.setRentprice(dto.getRentprice());
-		return be;
 	}
 	@Override
 	public List<BuildingDTO> findByNameContaining(String name){
@@ -86,5 +95,7 @@ public class BuildingServiceImplement implements BuildingService {
 		}
 		return res;
 	}
+	
+	
 
 }
