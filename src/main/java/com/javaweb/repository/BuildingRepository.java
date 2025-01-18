@@ -11,4 +11,5 @@ public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>,
 	List<BuildingEntity> findByNameContainingAndStreetContaining(String name, String street);
 	void deleteByIdIn(Long [] ids);
 	void deleteByIdIn(List <Long> ids);
+	List<BuildingEntity> findByNameContainingAndStreetContainingAndWardContaining(String name, String street, String ward);
 }

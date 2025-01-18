@@ -33,21 +33,28 @@ import com.javaweb.repository.entity.DistrictEntity;
 import com.javaweb.service.BuildingService;
 import com.javaweb.serviceimplement.BuildingServiceImplement;
 @RestController
-@Transactional
 public class BuildingAPI {
-	@PersistenceContext
-	private EntityManager entityManager;
+	
 	@Autowired
 	private BuildingService buildingservice;
 	@Autowired
 	private BuildingRepository buildingRepository;
 
-	@GetMapping(value = "/api/building/")
-	public List<BuildingDTO> GetBuilding(@RequestParam Map<String, Object> params, @RequestParam(value = "typecode", required = false) List <String> typecode){
-		List<BuildingDTO> res = buildingservice.findAll(params, typecode);
-		return res;
+	@GetMapping(value = "/api/building")
+	public List<BuildingDTO> getBuildings(
+			@RequestParam Map<String, Object> params, 
+			@RequestParam(value = "typecode", required = false) List <String> typecode){
+		return buildingservice.findCustomBuildings(params, typecode);
 		
 	}
+//	@GetMapping(value = "/api/building/")
+//	public List<BuildingDTO> getBuilding(@RequestParam(value = "name", required = false) String name,
+//			@RequestParam(value = "ward", required = false) String ward,
+//			@RequestParam(value = "street", required = false) String street) {
+//		List<BuildingDTO> res = buildingservice.findByNameContainingAndWardContainingAndStreetContaining(name, ward, street);
+//		return res;
+//	}
+	
 //	@GetMapping(value = "/api/building/{id}")
 //	public BuildingDTO getBuildingById(@PathVariable Long id){
 //		BuildingDTO res = new BuildingDTO();
